@@ -1,6 +1,9 @@
 import React from 'react'
 import { useOutletContext } from 'react-router-dom'
 
+/**
+ * Page qui représente la consultation d'un rapport en question.
+ */
 export default function Rapports() {
 	const [dataVisiteur, setDataVisiteur] = useOutletContext();
 

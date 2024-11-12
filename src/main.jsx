@@ -7,6 +7,9 @@ import './css/index.css'
 
 const router = createBrowserRouter(routes);
 
+/**
+ * Point d'entrée de l'application.
+ */
 createRoot(document.getElementById('root')).render(
 	<StrictMode>
 		<RouterProvider router={router} />

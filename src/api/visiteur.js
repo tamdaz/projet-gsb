@@ -1,7 +1,7 @@
 import api from "./api";
 
 /**
- * Retourne, de manière asyncrone, les informations du visiteur.
+ * Obtenir, de manière asyncrone, les informations du visiteur.
  * 
  * @param {string} login Nom d'utilisateur (ou nom du visiteur)
  * @param {string} mdp Mot de passe

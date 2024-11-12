@@ -1,7 +1,7 @@
 import React from 'react'
 
 /**
- * Permet d'afficher une alerte. Ce composant a pour bue
+ * Permet d'afficher une alerte. Ce composant a pour but
  * d'attirer l'attention de l'utilisateur.
  * 
  * @param {{ title: string }} props

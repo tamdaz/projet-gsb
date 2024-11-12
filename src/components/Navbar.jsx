@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
+/**
+ * Un composant qui affiche la barre de navigation, permettant d'aller de la page
+ * d'accueil à une autre page.
+ */
 export default function Navbar() {
     const navigateTo = useNavigate();
 	const location = useLocation();
 	
     /**
-     * Permet de se déconnecter du compte d'un visiteur
+     * Permet de se déconnecter du compte d'un visiteur.
      */
     const deconnexion = () => {
         navigateTo("/", { state: null });

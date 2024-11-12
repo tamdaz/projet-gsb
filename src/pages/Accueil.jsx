@@ -3,6 +3,9 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { getVisiteur } from '../api/visiteur';
 import Navbar from "../components/Navbar";
 
+/**
+ * Page qui représente la page d'accueil.
+ */
 export default function Accueil() {
 	const [dataVisiteur, setDataVisiteur] = React.useState({});
 	const { state } = useLocation();

@@ -3,6 +3,9 @@ import Alert from '../components/Alert'
 import { getVisiteur } from '../api/visiteur';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Représente la page de connexion.
+ */
 export default function Index() {
     const [erreurLogin, setErreurLogin] = React.useState(false);
 
@@ -26,7 +29,6 @@ export default function Index() {
         getVisiteur(credentials.login, credentials.mdp).then((response) => {
             if (response.data !== null) {
                 console.log("Succès");
-
 
                 navigateTo("/accueil", {
                     state: {
