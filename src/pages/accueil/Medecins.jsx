@@ -1,7 +1,7 @@
 import React from 'react'
-import { getMedecins, getMedecinsParNom } from '../../api/medecins';
-import DatalistInput from 'react-datalist-input';
 import 'react-datalist-input/dist/styles.css';
+import DatalistInput from 'react-datalist-input';
+import { getMedecins, getMedecinsParNom } from '../../api/medecins';
 
 /**
  * Page qui représente la consultation d'un médecin en question.
@@ -10,6 +10,7 @@ export default function Medecins() {
 	const [medecins, setMedecins] = React.useState([]);
 	const [recherche, setRecherche] = React.useState("");
 	const [medecinTrouvee, setMedecinTrouvee] = React.useState({});
+	const [section, setSection] = React.useState("fiche");
 
 	/**
 	 * A chaque fois qu'on tape le nom du médecin dans la barre de recherche,
@@ -25,7 +26,7 @@ export default function Medecins() {
 	/**
 	 * Permet de lister les médecins, utilisé pour l'autocomplétion.
 	 */
-	const listMedecins = () => {
+	const listeMedecins = () => {
 		return medecins.map(m => {
 			return {
 				id: m.id,
@@ -34,8 +35,31 @@ export default function Medecins() {
 		}).slice(0, 9)
 	}
 
-	const RapportMedecin = () => {
-		return <table className="border">
+	/**
+	 * Permet de formater le numéro de téléphone en groupant les
+	 * deux chiffres entre eux.
+	 * @param {string} numero
+	 */
+	const formaterNumeroTelephone = (numero) => {
+		return numero.match(/(.{1})./g).join(" ")
+	}
+
+	/**
+	 * Permet d'afficher un navbar pour sélectionner la consultation
+	 * des rapports ainsi que des médecins.
+	 */
+	const NavbarMedecins = () => {
+		return <div className="grid grid-cols-2 gap-4 py-4">
+			<button className="w-full">Consulter les rapports</button>
+			<button className="w-full">Gérer le médecin</button>
+		</div>
+	}
+
+	/**
+	 * Affiche des informations sur un médecin en question.
+	 */
+	const TableauMedecin = () => {
+		return <table className="border w-full">
 			<tbody>
 				<tr>
 					<td className="border px-4 py-2 w-[300px] text-start">Nom</td>
@@ -55,7 +79,7 @@ export default function Medecins() {
 				</tr>
 				<tr>
 					<td className="border px-4 py-2 w-[300px] text-start">Numéro de téléphone</td>
-					<td className="border px-4 py-2 w-[300px]">{ medecinTrouvee.tel.match(/(.{1})./g).join(" ") }</td>
+					<td className="border px-4 py-2 w-[300px]">{ formaterNumeroTelephone(medecinTrouvee.tel) }</td>
 				</tr>
 				<tr>
 					<td className="border px-4 py-2 w-[300px] text-start">Spécialité complémentaire</td>
@@ -64,23 +88,29 @@ export default function Medecins() {
 			</tbody>
 		</table>
 	}
+
+	/**
+	 * Permet de récupérer les informations des médecins.
+	 */
+	const getInfos = (item) => {
+		getMedecins().then(json => {
+			const medecin = json.data.filter(m => item.id === m.id)[0]
+			console.log(medecin);
+			
+			setMedecinTrouvee(medecin);
+		})
+	}
 	
 	return <div>
-		<h2 className="text-2xl">Médecins</h2>
+		<h2 className="text-2xl mb-2">Médecins</h2>
 		<DatalistInput
 			placeholder="Rechercher médecins"
-			onSelect={item => {
-				getMedecins().then(json => {
-					const medecin = json.data.filter(m => item.id === m.id)[0]
-					console.log(medecin);
-					
-					setMedecinTrouvee(medecin);
-				})
-			}}
+			onSelect={item => getInfos(item)}
 			onChange={e => setRecherche(e.target.value)}
-			items={listMedecins()}
+			items={listeMedecins()}
 		/>
+		<NavbarMedecins />
 		<br />
-		{ Object.keys(medecinTrouvee).length !== 0 && <RapportMedecin /> }
+		{ Object.keys(medecinTrouvee).length !== 0 && <TableauMedecin /> }
 	</div>
 }
