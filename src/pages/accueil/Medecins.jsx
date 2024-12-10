@@ -2,6 +2,7 @@ import React from 'react'
 import 'react-datalist-input/dist/styles.css';
 import DatalistInput from 'react-datalist-input';
 import { getMedecins, getMedecinsParNom } from '../../api/medecins';
+import ComposantFiche from '../../components/medecins/ComposantFiche';
 
 /**
  * Page qui représente la consultation d'un médecin en question.
@@ -10,7 +11,7 @@ export default function Medecins() {
 	const [medecins, setMedecins] = React.useState([]);
 	const [recherche, setRecherche] = React.useState("");
 	const [medecinTrouvee, setMedecinTrouvee] = React.useState({});
-	const [section, setSection] = React.useState("fiche");
+	const [section, setSection] = React.useState("rapports");
 
 	/**
 	 * A chaque fois qu'on tape le nom du médecin dans la barre de recherche,
@@ -50,8 +51,8 @@ export default function Medecins() {
 	 */
 	const NavbarMedecins = () => {
 		return <div className="grid grid-cols-2 gap-4 py-4">
-			<button className="w-full">Consulter les rapports</button>
-			<button className="w-full">Gérer le médecin</button>
+			<button className="w-full" onClick={() => setSection("rapports")}>Consulter les rapports</button>
+			<button className="w-full" onClick={() => setSection("medecins")}>Gérer le médecin</button>
 		</div>
 	}
 
@@ -111,6 +112,10 @@ export default function Medecins() {
 		/>
 		<NavbarMedecins />
 		<br />
-		{ Object.keys(medecinTrouvee).length !== 0 && <TableauMedecin /> }
+		{
+			section === "rapports" ?
+				(Object.keys(medecinTrouvee).length !== 0 && <TableauMedecin />) :
+				<ComposantFiche />
+		}
 	</div>
 }

@@ -27,13 +27,13 @@ export default function Index() {
 
         // Récupérer les infos d'un visiteur.
         getVisiteur(credentials.login, credentials.mdp).then((response) => {
+            console.log(response);
             if (response.data !== null) {
                 console.log("Succès");
-
                 navigateTo("/accueil", {
                     state: {
-                        login: credentials.login,
-                        mdp: credentials.mdp
+						login: credentials.login,
+						mdp: credentials.mdp
                     }
                 })
             } else {
