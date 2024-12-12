@@ -1,5 +1,5 @@
 import React from 'react'
 
-export default function ComposantFiche() {
+export default function FicheMedecinComponent() {
   return <div>Composant fiche</div>
 }
