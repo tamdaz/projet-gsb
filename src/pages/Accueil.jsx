@@ -1,7 +1,7 @@
 import React from 'react'
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { getVisiteur } from '../api/visiteur';
 import Navbar from "../components/Navbar";
+import { getVisiteur } from '../api/visiteur';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 /**
  * Page qui représente la page d'accueil.

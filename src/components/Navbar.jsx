@@ -6,15 +6,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
  * d'accueil à une autre page.
  */
 export default function Navbar() {
-    const navigateTo = useNavigate();
+	const navigateTo = useNavigate();
 	const location = useLocation();
-	
-    /**
-     * Permet de se déconnecter du compte d'un visiteur.
-     */
-    const deconnexion = () => {
-        navigateTo("/", { state: null });
-    }
+
+	/**
+	 * Permet de se déconnecter du compte d'un visiteur.
+	 */
+	const deconnexion = () => {
+		navigateTo("/", { state: null });
+	}
 
 	/**
 	 * Composant qui affiche l'item du navbar.
@@ -29,14 +29,14 @@ export default function Navbar() {
 		}
 	}
 
-    return <nav className="w-full bg-blue-500 text-white flex flex-row gap-8 px-8 py-3 items-center">
+	return <nav className="w-full bg-blue-500 text-white flex flex-row gap-8 px-8 py-3 items-center">
 		<b>GSB</b>
 		<NavItem url="/accueil" name="Dashboard" />
 		<NavItem url="/accueil/rapports" name="Rapports" />
 		<NavItem url="/accueil/medecins" name="Médecins" />
 		<div className="flex-grow"></div>
-        <button onClick={deconnexion} className="btn-red px-4">
-            Se déconnecter
-        </button>
-    </nav>
+		<button onClick={deconnexion} className="btn-red px-4">
+			Se déconnecter
+		</button>
+	</nav>
 }
