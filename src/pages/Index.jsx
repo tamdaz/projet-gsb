@@ -47,23 +47,24 @@ export default function Index() {
         <div className="flex justify-center items-center">
             <img src="/logo-gsb.png" alt="logo_gsb" width={256} />
         </div>
-        <div className="flex flex-col justify-center items-start p-8">
-            {(erreurLogin === true) ? <Alert title="Impossible de se connecter !" /> : null}
-
-            <h1 className="text-4xl font-bold text-center w-full">Identifiez-vous</h1>
-            <br />
-            <form onSubmit={connection} className="flex flex-col w-full" method="post">
-                <label>
-                    Nom d'utilisateur :
-                    <input type="text" name="login" />
-                </label>
-                <label>
-                    Mot de passe :
-                    <input type="password" name="mdp" />
-                </label>
+        <div className="flex flex-col justify-center items-start">
+            <div className="max-w-[800px] m-auto">
+                {(erreurLogin === true) ? <Alert title="Impossible de se connecter !" /> : null}
+                <h1 className="text-4xl font-bold text-center w-full">Identifiez-vous</h1>
                 <br />
-                <button type="submit">Se connecter</button>
-            </form>
+                <form onSubmit={connection} className="flex flex-col w-full" method="post">
+                    <label>
+                        Nom d'utilisateur :
+                        <input type="text" name="login" />
+                    </label>
+                    <label>
+                        Mot de passe :
+                        <input type="password" name="mdp" />
+                    </label>
+                    <br />
+                    <button type="submit">Se connecter</button>
+                </form>
+            </div>
         </div>
     </div>
 }
