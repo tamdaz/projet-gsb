@@ -2,7 +2,8 @@ import React from 'react'
 import 'react-datalist-input/dist/styles.css';
 import DatalistInput from 'react-datalist-input';
 import { getMedecins, getMedecinsParNom } from '../../api/medecins';
-import ComposantFiche from '../../components/medecins/ComposantFiche';
+import FicheMedecinComponent from '../../components/fiches/FicheMedecinComponent';
+import ListeRapportsComponent from '../../components/fiches/ListeRapportsComponent';
 
 /**
  * Page qui représente la consultation d'un médecin en question.
@@ -14,7 +15,7 @@ export default function Medecins() {
 	const [section, setSection] = React.useState("rapports");
 
 	/**
-	 * A chaque fois qu'on tape le nom du médecin dans la barre de recherche,
+	 * À chaque fois qu'on tape le nom du médecin dans la barre de recherche,
 	 * mettre à jour l'autocomplétion afin de trouver facilement le médecin
 	 * correspondant.
 	 */
@@ -37,15 +38,6 @@ export default function Medecins() {
 	}
 
 	/**
-	 * Permet de formater le numéro de téléphone en groupant les
-	 * deux chiffres entre eux.
-	 * @param {string} numero
-	 */
-	const formaterNumeroTelephone = (numero) => {
-		return numero.match(/(.{1})./g).join(" ")
-	}
-
-	/**
 	 * Permet d'afficher un navbar pour sélectionner la consultation
 	 * des rapports ainsi que des médecins.
 	 */
@@ -57,43 +49,9 @@ export default function Medecins() {
 	}
 
 	/**
-	 * Affiche des informations sur un médecin en question.
-	 */
-	const TableauMedecin = () => {
-		return <table className="border w-full">
-			<tbody>
-				<tr>
-					<td className="border px-4 py-2 w-[300px] text-start">Nom</td>
-					<td className="border px-4 py-2 w-[300px]">{ medecinTrouvee.nom }</td>
-				</tr>
-				<tr>
-					<td className="border px-4 py-2 w-[300px] text-start">Prénom</td>
-					<td className="border px-4 py-2 w-[300px]">{ medecinTrouvee.prenom }</td>
-				</tr>
-				<tr>
-					<td className="border px-4 py-2 w-[300px] text-start">Adresse</td>
-					<td className="border px-4 py-2 w-[300px]">{ medecinTrouvee.adresse }</td>
-				</tr>
-				<tr>
-					<td className="border px-4 py-2 w-[300px] text-start">Département</td>
-					<td className="border px-4 py-2 w-[300px]">{ medecinTrouvee.departement }</td>
-				</tr>
-				<tr>
-					<td className="border px-4 py-2 w-[300px] text-start">Numéro de téléphone</td>
-					<td className="border px-4 py-2 w-[300px]">{ formaterNumeroTelephone(medecinTrouvee.tel) }</td>
-				</tr>
-				<tr>
-					<td className="border px-4 py-2 w-[300px] text-start">Spécialité complémentaire</td>
-					<td className="border px-4 py-2 w-[300px]">{ medecinTrouvee.specialitecomplementaire ?? "Aucun" }</td>
-				</tr>
-			</tbody>
-		</table>
-	}
-
-	/**
 	 * Permet de récupérer les informations des médecins.
 	 */
-	const getInfos = (item) => {
+	const selectMedecin = (item) => {
 		getMedecins().then(json => {
 			const medecin = json.data.filter(m => item.id === m.id)[0]
 			console.log(medecin);
@@ -106,7 +64,7 @@ export default function Medecins() {
 		<h2 className="text-2xl mb-2">Médecins</h2>
 		<DatalistInput
 			placeholder="Rechercher médecins"
-			onSelect={item => getInfos(item)}
+			onSelect={item => selectMedecin(item)}
 			onChange={e => setRecherche(e.target.value)}
 			items={listeMedecins()}
 		/>
@@ -114,8 +72,8 @@ export default function Medecins() {
 		<br />
 		{
 			section === "rapports" ?
-				(Object.keys(medecinTrouvee).length !== 0 && <TableauMedecin />) :
-				<ComposantFiche />
+				<ListeRapportsComponent medecin={medecinTrouvee} /> :
+				<FicheMedecinComponent />
 		}
 	</div>
 }
