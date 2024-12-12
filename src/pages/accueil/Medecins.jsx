@@ -65,7 +65,10 @@ export default function Medecins() {
 		<DatalistInput
 			placeholder="Rechercher médecins"
 			onSelect={item => selectMedecin(item)}
-			onChange={e => setRecherche(e.target.value)}
+			onChange={e => {
+				setRecherche(e.target.value)
+				setMedecinTrouvee({})
+			}}
 			items={listeMedecins()}
 		/>
 		<NavbarMedecins />
