@@ -5,11 +5,12 @@ import { useOutletContext } from 'react-router-dom'
  * Page qui représente la consultation d'un rapport en question.
  */
 export default function Rapports() {
-	const [dataVisiteur, setDataVisiteur] = useOutletContext();
+	const [ dataVisiteur ] = useOutletContext();
 
 	return <div>
 		<h2 className="text-2xl">Rapports</h2>
-		<table className="border">
+		<br />
+		<table className="border w-full">
 			<tbody>
 				<tr>
 					<td className="border px-4 py-2 w-[300px] text-start">Nom</td>
