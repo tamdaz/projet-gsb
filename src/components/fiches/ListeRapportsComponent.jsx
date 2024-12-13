@@ -17,6 +17,12 @@ export default function ListeRapportsComponent({ medecin }) {
 		return <table className="border w-full">
 			<tbody>
 				<tr>
+					<td className="border px-4 py-2 w-[300px] text-start">ID</td>
+					<td className="border px-4 py-2 w-[300px]">
+						{medecin.id}
+					</td>
+				</tr>
+				<tr>
 					<td className="border px-4 py-2 w-[300px] text-start">Nom</td>
 					<td className="border px-4 py-2 w-[300px]">
 						{medecin.nom}
