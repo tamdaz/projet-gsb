@@ -20,7 +20,6 @@ export default function Accueil() {
 
 			getVisiteur(login, mdp).then((res) => {
 				if (res.data !== null) {
-					console.log(res.data);
 					setDataVisiteur(res.data);
 				}
 			})

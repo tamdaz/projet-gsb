@@ -27,9 +27,7 @@ export default function Index() {
 
         // Récupérer les infos d'un visiteur.
         getVisiteur(credentials.login, credentials.mdp).then((response) => {
-            console.log(response);
             if (response.data !== null) {
-                console.log("Succès");
                 navigateTo("/accueil", {
                     state: {
 						login: credentials.login,
@@ -38,7 +36,6 @@ export default function Index() {
                 })
             } else {
                 setErreurLogin(true);
-                console.log("Erreur");
             }
         });
     }
