@@ -9,7 +9,6 @@ export default function Rapports({ id }) {
 
   React.useEffect(() => {
     getRapports(id).then(res => {
-      console.log("Rapport", res);
       setRapports(res.data);
     })
   }, []);
