@@ -41,8 +41,7 @@ export default function Medecins() {
 	 */
 	const selectMedecin = (item) => {
 		getMedecins().then(json => {
-			const medecin = json.data.filter(m => item.id === m.id)[0]
-			console.log(medecin);
+			const medecin = json.data.filter(m => item.id === m.id)[0];
 
 			setMedecinTrouvee(medecin);
 		})
@@ -59,9 +58,10 @@ export default function Medecins() {
 			onChange={e => {
 				setRecherche(e.target.value)
 				setMedecinTrouvee({})
+				navigateTo(`/accueil/medecins`)
 			}}
 			items={listeMedecins()}
 		/>
-		<Outlet context={[medecinTrouvee, medecinTrouvee]} key="0" />
+		<Outlet context={[medecinTrouvee, medecinTrouvee]} />
 	</div>
 }
