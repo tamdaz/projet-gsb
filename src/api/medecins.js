@@ -11,7 +11,7 @@ export async function getMedecinsParNom(nom) {
         const response = await api.get(`/medecins?nom=${nom}`);
         return response;
     } catch (err) {
-        console.log("Une erreur s'est produite : ", err);
+        console.error("Une erreur s'est produite : ", err);
     }
 }
 
@@ -23,18 +23,19 @@ export async function getMedecins() {
         const response = await api.get(`/medecins?nom=`);
         return response;
     } catch (err) {
-        console.log("Une erreur s'est produite : ", err);
+        console.error("Une erreur s'est produite : ", err);
     }
 }
 
 /**
  * Permet de mettre à jour, de manière asyncrone, les informations du médecin.
+ * @param medecin Informations du médecin sous forme d'objet.
  */
 export async function updateMedecin(medecin) {
     try {
-        const response = await api.put(`/majMedecin`, JSON.stringify(medecin));
+        const response = await api.put(`/majMedecin`, medecin);
         return response;
     } catch (err) {
-        console.log("Une erreur s'est produite : ", err);
+        console.error("Une erreur s'est produite : ", err);
     }
 }
