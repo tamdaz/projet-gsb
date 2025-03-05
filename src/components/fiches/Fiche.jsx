@@ -14,21 +14,22 @@ export default function Fiche({ medecin }) {
    * Permet de mettre à jour les informations du médecin.
    * @param {Event} e 
    */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let data = Object.fromEntries(new FormData(e.target));
     data.id = medecin.id;
+    data.departement = parseInt(data.departement);
 
-    updateMedecin(data).then(res => {
-      if (res.status === 200) {
-        setStatus("success");
-        setMessage(res.data.message);
-      } else {
-        setStatus("error");
-        setMessage("Une erreur s'est produite lors de la mise à jour de la fiche médécin.");
-      }
-    });
+    const response = await updateMedecin(data);
+
+    if (response.status === 200) {
+      setStatus("success");
+      setMessage(response.data.message);
+    } else {
+      setStatus("error");
+      setMessage("Une erreur s'est produite lors de la mise à jour de la fiche médécin.");
+    }
   }
 
   return <>
@@ -75,7 +76,7 @@ export default function Fiche({ medecin }) {
         Spécialité complémentaire :
         <input
           type="text" name="specialite"
-          defaultValue={medecin.specialite_complementaire}
+          defaultValue={medecin.specialitecomplementaire}
         />
       </label>
       <br />
