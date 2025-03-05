@@ -7,5 +7,5 @@ import axios from "axios";
  * afin de la changer facilement.
  */
 export default axios.create({
-    baseURL: "http://127.0.0.1/restGSB"
+    baseURL: "http://172.20.10.2/restGSB"
 })
