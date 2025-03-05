@@ -12,3 +12,16 @@ export async function getRapports(id) {
     console.error("Une erreur s'est produite : ", err);
   }
 }
+
+/**
+ * Permet de récupérer des rapports, de manière asyncrone.
+ * @param id .
+ */
+export async function getRapportsParId(id) {
+  try {
+    const response = await api.get(`/rapport/${id}`);
+    return response;
+  } catch (err) {
+    console.error("Une erreur s'est produite : ", err);
+  }
+}
