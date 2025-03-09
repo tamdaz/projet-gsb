@@ -61,6 +61,6 @@ export default function Medecins() {
 			}}
 			items={listeMedecins()}
 		/>
-		<Outlet context={[medecinTrouvee, medecinTrouvee]} />
+		<Outlet context={[medecinTrouvee]} />
 	</div>
 }
