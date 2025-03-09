@@ -1,6 +1,6 @@
 import React from "react";
-import Alert from "./../Alert";
-import { updateMedecin } from "../../api/medecins";
+import Alert from "../../Alert";
+import { updateMedecin } from "../../../api/medecins";
 
 /**
  * Permet d'afficher un formulaire afin que l'utilisateur puisse mettre à
@@ -19,7 +19,6 @@ export default function Fiche({ medecin }) {
 
     let data = Object.fromEntries(new FormData(e.target));
     data.id = medecin.id;
-    data.departement = parseInt(data.departement);
 
     const response = await updateMedecin(data);
 
