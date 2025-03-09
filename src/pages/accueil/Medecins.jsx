@@ -42,7 +42,6 @@ export default function Medecins() {
 	const selectMedecin = (item) => {
 		getMedecins().then(json => {
 			const medecin = json.data.filter(m => item.id === m.id)[0];
-
 			setMedecinTrouvee(medecin);
 		})
 	}
@@ -62,6 +61,6 @@ export default function Medecins() {
 			}}
 			items={listeMedecins()}
 		/>
-		<Outlet context={[medecinTrouvee, medecinTrouvee]} />
+		<Outlet context={[medecinTrouvee]} />
 	</div>
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { getRapports } from "../../api/rapports";
+import { getRapports } from "../../../api/rapports";
 
 /**
  * Affiche des informations sur un médecin en question.
