@@ -29,6 +29,11 @@ export default function Fiche({ medecin }) {
       setStatus("error");
       setMessage("Une erreur s'est produite lors de la mise à jour de la fiche médécin.");
     }
+
+    setTimeout(() => {
+      setStatus(null);
+      setMessage(null);
+    }, 2000);
   }
 
   return <>
@@ -49,14 +54,7 @@ export default function Fiche({ medecin }) {
             defaultValue={medecin.prenom}
           />
         </label>
-        <label>
-          Département :
-          <input
-            type="text" name="departement"
-            defaultValue={medecin.departement}
-          />
-        </label>
-        <label>
+        <label className="col-span-2">
           Numéro de téléphone :
           <input
             type="tel" name="tel"
