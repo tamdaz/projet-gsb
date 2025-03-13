@@ -5,13 +5,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './css/index.css'
 
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes, {
+	future: {
+		v7_relativeSplatPath: true
+	}
+});
 
 /**
  * Point d'entrée de l'application.
  */
 createRoot(document.getElementById('root')).render(
 	<StrictMode>
-		<RouterProvider router={router} />
+		<RouterProvider router={router} future={{
+			v7_startTransition: true
+		}} />
 	</StrictMode>
 )
