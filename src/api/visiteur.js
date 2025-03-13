@@ -14,6 +14,6 @@ export async function getVisiteur(login, mdp) {
 
         return response;
     } catch (err) {
-        console.log("Une erreur s'est produite : ", err);
+        console.error("Une erreur s'est produite : ", err);
     }
 }
