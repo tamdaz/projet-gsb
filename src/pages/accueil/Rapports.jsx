@@ -10,7 +10,7 @@ export default function Rapports() {
 	const [recherche, setRecherche] = React.useState("");
 	const [medecins, setMedecins] = React.useState([]);
 	const [medecinTrouvee, setMedecinTrouvee] = React.useState({});
-	const [choix, setChoix] = React.useState("ajouter");
+	const [choix, setChoix] = React.useState("Ajouter");
 	const [dataVisiteur] = useOutletContext();
 
 	const navigateTo = useNavigate();
@@ -21,7 +21,6 @@ export default function Rapports() {
 	 * trouvée est localement effacé de l'état.
 	 */
 	React.useEffect(() => {
-		setMedecinTrouvee({});
 		getMedecinsParNom(recherche).then((res) => {
 			setMedecins(res.data);
 		});
@@ -39,23 +38,50 @@ export default function Rapports() {
 		}).slice(0, 9)
 	}
 
-	return <div>
-		<h2 className="text-2xl">Rapports</h2>
-		<div className="grid grid-cols-2 gap-4 py-4">
-			<button onClick={() => setChoix("ajouter")} className="w-full">Ajouter un rapport</button>
-			<button onClick={() => setChoix("modifier")} className="w-full">Modifier un rapport</button>
-		</div>
-		{
-			Object.keys(medecinTrouvee).length === 0 ?
-				<DatalistInput
-					placeholder="Rechercher un médecin"
-					onSelect={item => {
-						setMedecinTrouvee(item)
-						navigateTo(`/accueil/rapports/${item.id}`);
-					}}
-					onChange={e => setRecherche(e.target.value)}
-					items={listeMedecins()}
-				/> : <Outlet context={[medecinTrouvee, choix, dataVisiteur]} />
+	/**
+	 * Permet d'aller vers "Ajouter un rapport".
+	 */
+	const goToAjouter = () => {
+		navigateTo(`${medecinTrouvee.id}/ajouter`);
+		setChoix("Ajouter");
+	}
+
+	/**
+	 * Permet d'aller vers "Modifier un rapport".
+	 */
+	const goToModifier = () => {
+		navigateTo(`${medecinTrouvee.id}/modifier`);
+		setChoix("Modifier");
+	}
+
+	/**
+	 * Consiste à afficher la barre de recherche pour trouver un médecin.
+	 */
+	const RechercheMedecin = () => {
+		if (Object.keys(medecinTrouvee).length !== 0) {
+			return <Outlet context={[dataVisiteur, medecinTrouvee]} />
 		}
+
+		return <DatalistInput
+			placeholder="Rechercher un médecin"
+			onSelect={item => {
+				setMedecinTrouvee(item);
+				if (choix === "Ajouter")
+					navigateTo(`/accueil/rapports/${item.id}/ajouter`);
+				else if (choix === "Modifier")
+					navigateTo(`/accueil/rapports/${item.id}/modifier`);
+			}}
+			onChange={e => setRecherche(e.target.value)}
+			items={listeMedecins()}
+		/>
+	}
+
+	return <div>
+		<h2 className="text-2xl">{choix.toUpperCase()} un rapport</h2>
+		<div className="grid grid-cols-2 gap-4 py-4">
+			<button onClick={goToAjouter} className="w-full">Ajouter un rapport</button>
+			<button onClick={goToModifier} className="w-full">Modifier un rapport</button>
+		</div>
+		<RechercheMedecin />
 	</div>
 }
