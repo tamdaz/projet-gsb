@@ -51,3 +51,17 @@ export async function modifierRapport(data) {
     console.error("Une erreur s'est produite : ", err);
   }
 }
+
+/**
+ * Permet de récupérer des rapports par date.
+ * @param {string} idVisiteur
+ * @param {string} date
+ */
+export async function getRapportsParDate(idVisiteur, date) {
+  try {
+    const response = await api.get(`/rapports_a_date?idVisiteur=${idVisiteur}&date=${date}`)
+    return response;
+  } catch (err) {
+    console.error("Une erreur s'est produite : ", err);
+  }
+}
