@@ -32,7 +32,7 @@ export default function Accueil() {
 		<Navbar />
 		<div className="p-4 m-auto w-[800px]">
 			<h2 className="text-4xl font-bold mb-4">Bonjour, {dataVisiteur.nom} {dataVisiteur.prenom}</h2>
-			<Outlet context={[dataVisiteur, setDataVisiteur]} />
+			<Outlet context={[dataVisiteur]} />
 		</div>
 	</>
 }
