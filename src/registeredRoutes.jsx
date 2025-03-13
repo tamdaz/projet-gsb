@@ -3,7 +3,8 @@ import Accueil from "./pages/Accueil";
 import Medecins from "./pages/accueil/Medecins";
 import Rapports from "./pages/accueil/Rapports";
 import FicheMedecin from "./components/fiches/medecin/FicheMedecin";
-import FormulaireRapport from "./components/fiches/rapport/FormulaireRapport";
+import AjouterRapport from "./components/fiches/rapport/AjouterRapport";
+import ModifierRapport from "./components/fiches/rapport/ModifierRapport";
 
 /**
  * Ensemble de chemins accessibles pour les utilisateurs.
@@ -29,10 +30,12 @@ export const routes = [
 			}, {
 				path: "rapports",
 				element: <Rapports />,
-				children: [
-					{
-						path: ":id",
-						element: <FormulaireRapport />
+				children: [{
+						path: ":id/ajouter",
+						element: <AjouterRapport />
+					}, {
+						path: ":id/modifier",
+						element: <ModifierRapport />
 					}
 				]
 			}
