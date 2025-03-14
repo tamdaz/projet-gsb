@@ -19,8 +19,9 @@ export default function FicheMedecin() {
   }
 
   return <div>
-    <NavbarMedecins />
+    { medecinTrouvee != {} && <NavbarMedecins /> }
     <h2 className="text-2xl">Fiche du médecin</h2>
+    <br />
     { affichage === "rapport" && <Rapports id={medecinTrouvee.id} /> }
     { affichage === "fiche"   && <Fiche medecin={medecinTrouvee} /> }
   </div>
