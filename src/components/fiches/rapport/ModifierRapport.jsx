@@ -141,7 +141,7 @@ export default function ModifierRapport() {
     }
 
     return <>
-        {status !== null && message !== null ? <Alert title={message} /> : null}
+        {status !== "" && message !== "" ? <Alert title={message} status={status} /> : null}
         {
             Object.keys(selectedRapport).length === 0 && <label>
                 Choisir la date :

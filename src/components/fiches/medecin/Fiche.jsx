@@ -40,35 +40,35 @@ export default function Fiche({ medecin }) {
   }
 
   return <>
-    { status !== null && message !== null ? <Alert title={message} /> : null }
+    { status !== "" && message !== "" ? <Alert title={message} status={status} /> : null }
     <form onSubmit={handleSubmit} method="post">
       <div className="grid grid-cols-2 gap-4 mb-4">
         <label>
           Nom :
           <input
             type="text" name="nom"
-            defaultValue={medecin.nom}
+            defaultValue={medecin.nom ?? ``}
           />
         </label>
         <label>
           Prénom :
           <input
             type="text" name="prenom"
-            defaultValue={medecin.prenom}
+            defaultValue={medecin.prenom ?? ``}
           />
         </label>
         <label className="col-span-2">
           Numéro de téléphone :
           <input
             type="tel" name="tel"
-            defaultValue={medecin.tel}
+            defaultValue={medecin.tel ?? ``}
           />
         </label>
         <label className="col-span-2">
           Adresse :
           <input
             type="text" name="adresse"
-            defaultValue={medecin.adresse}
+            defaultValue={medecin.adresse ?? ``}
           />
         </label>
       </div>
@@ -76,7 +76,7 @@ export default function Fiche({ medecin }) {
         Spécialité complémentaire :
         <input
           type="text" name="specialite"
-          defaultValue={medecin.specialitecomplementaire}
+          defaultValue={medecin.specialitecomplementaire ?? ``}
         />
       </label>
       <br />
