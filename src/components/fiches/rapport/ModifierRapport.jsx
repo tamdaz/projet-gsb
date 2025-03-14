@@ -130,11 +130,11 @@ export default function ModifierRapport() {
         return <form onSubmit={handleSubmit}>
             <label>
                 Motif :
-                <input type="text" name="motif" defaultValue={selectedRapport.motif} required />
+                <input type="text" name="motif" defaultValue={selectedRapport.motif ?? ``} required />
             </label>
             <label>
                 Bilan :
-                <textarea name="bilan" defaultValue={selectedRapport.bilan} required></textarea>
+                <textarea name="bilan" defaultValue={selectedRapport.bilan ?? ``} required></textarea>
             </label>
             <button type="submit" className="w-full">Ajouter un rapport</button>
         </form>

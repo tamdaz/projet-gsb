@@ -1,6 +1,6 @@
 import React from "react";
 import { useOutletContext } from "react-router-dom";
-import { ajouterRapport, modifierRapport } from "../../../api/rapports";
+import { ajouterRapport } from "../../../api/rapports";
 import Alert from "../../Alert";
 
 /**
@@ -41,7 +41,7 @@ export default function AjouterRapport() {
     };
 
     return <>
-        {status !== null && message !== null ? <Alert title={message} /> : null}
+        {status !== "" && message !== "" ? <Alert title={message} status={status} /> : null}
         <form onSubmit={handleSubmit}>
             <label>
                 Date de visite :
