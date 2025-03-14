@@ -12,6 +12,21 @@ export default function Index() {
     const navigateTo = useNavigate();
 
     /**
+     * Lors du montage de ce composant, vérifier si les informations de connexion
+     * est stockée en local ou non. Si c'est le cas, il sera redirigé vers la page
+     * d'accueil.
+     */
+    React.useEffect(() => {
+        if (sessionStorage.getItem("credentials") !== null) {
+            const credentials = JSON.parse(sessionStorage.getItem("credentials"));
+            
+            navigateTo("/accueil", {
+                state: credentials
+            });
+        }
+    }, []);
+
+    /**
      * Lors de la soumission de formulaire, tenter la connexion à un
      * compte utilisateur.
      * 
@@ -20,7 +35,7 @@ export default function Index() {
     const connection = (e) => {
         e.preventDefault();
 
-        if (erreurLogin === true) setErreurLogin(false);
+        setErreurLogin(false);
 
         /** @type {{ login: string, mdp: string }} credentials */
         const credentials = Object.fromEntries(new FormData(e.target));
@@ -28,11 +43,24 @@ export default function Index() {
         // Récupérer les infos d'un visiteur.
         getVisiteur(credentials.login, credentials.mdp).then((response) => {
             if (response.data !== null) {
+                const jsonCredentials = {
+                    login: credentials.login,
+                    mdp: credentials.mdp
+                }
+
                 navigateTo("/accueil", {
-                    state: {
-						login: credentials.login,
-						mdp: credentials.mdp
-                    }
+                    state: jsonCredentials
+                })
+
+                // En envrionnement de développement, pour éviter de se connecter à chaque modification
+                // du code, on stocke les informations de connexion dans la sessionStorage.
+                // Note : elle ne peut stocker que durant le fonctionnement du navigateur.
+                if (sessionStorage.getItem("credentials") === null) {
+                    sessionStorage.setItem("credentials", JSON.stringify(jsonCredentials));
+                }
+    
+                navigateTo("/accueil", {
+                    state: jsonCredentials
                 })
             } else {
                 setErreurLogin(true);
@@ -46,7 +74,7 @@ export default function Index() {
         </div>
         <div className="flex flex-col justify-center items-start">
             <div className="max-w-[800px] m-auto">
-                {(erreurLogin === true) ? <Alert title="Impossible de se connecter !" /> : null}
+                {erreurLogin === true && <Alert title="Impossible de se connecter !" status="error" /> }
                 <h1 className="text-4xl font-bold text-center w-full">Identifiez-vous</h1>
                 <br />
                 <form onSubmit={connection} className="flex flex-col w-full" method="post">

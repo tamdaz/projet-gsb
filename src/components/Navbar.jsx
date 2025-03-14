@@ -13,6 +13,7 @@ export default function Navbar() {
 	 * Permet de se déconnecter du compte d'un visiteur.
 	 */
 	const deconnexion = () => {
+		sessionStorage.clear("credentials");
 		navigateTo("/", { state: null });
 	}
 
@@ -22,7 +23,7 @@ export default function Navbar() {
 	 * navigateur, mettre cet item en gras.
 	 */
 	const NavItem = ({ url, name }) => {
-		if (url === location.pathname) {
+		if (location.pathname.startsWith(url)) {
 			return <Link to={url} className="font-bold">{ name }</Link>
 		} else {
 			return <Link to={url}>{ name }</Link>
