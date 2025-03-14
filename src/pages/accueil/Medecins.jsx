@@ -56,6 +56,7 @@ export default function Medecins() {
 	return <div>
 		<h2 className="text-2xl mb-2">Médecins</h2>
 		<DatalistInput
+			key="datalist-input-medecin"
 			placeholder="Rechercher médecins"
 			onSelect={item => {
 				selectMedecin(item);

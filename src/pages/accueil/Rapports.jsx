@@ -52,15 +52,9 @@ export default function Rapports() {
 		setChoix("Modifier");
 	}
 
-	/**
-	 * Consiste à afficher la barre de recherche pour trouver un médecin.
-	 */
-	const RechercheMedecin = () => {
-		if (Object.keys(medecinTrouvee).length !== 0) {
-			return <Outlet context={[dataVisiteur, medecinTrouvee]} />
-		}
-
-		return <DatalistInput
+	return <div>
+		<DatalistInput
+			key="datalist-input-medecin"
 			placeholder="Rechercher un médecin"
 			onSelect={item => {
 				setMedecinTrouvee(item);
@@ -72,14 +66,18 @@ export default function Rapports() {
 			onChange={e => setRecherche(e.target.value)}
 			items={listeMedecins()}
 		/>
-	}
-
-	return <div>
-		<h2 className="text-2xl">{choix.toUpperCase()} un rapport</h2>
-		<div className="grid grid-cols-2 gap-4 py-4">
-			<button onClick={goToAjouter} className="w-full">Ajouter un rapport</button>
-			<button onClick={goToModifier} className="w-full">Modifier un rapport</button>
-		</div>
-		<RechercheMedecin />
+		<br />
+		{
+			Object.keys(medecinTrouvee).length !== 0 && <>
+				<h2 className="text-2xl">{choix} un rapport pour {medecinTrouvee.value}</h2>
+				<div className="grid grid-cols-2 gap-4 my-4">
+					<button onClick={goToAjouter} className="w-full">Ajouter un rapport</button>
+					<button onClick={goToModifier} className="w-full">Modifier un rapport</button>
+				</div>
+			</>
+		}
+		{
+			Object.keys(medecinTrouvee).length !== 0 && <Outlet context={[dataVisiteur, medecinTrouvee]} />
+		}
 	</div>
 }
