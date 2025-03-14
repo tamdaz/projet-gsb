@@ -7,8 +7,10 @@ import { useNavigate } from 'react-router-dom';
  * Représente la page de connexion.
  */
 export default function Index() {
+    // Définir le message d'erreur lors du login.
     const [erreurLogin, setErreurLogin] = React.useState(false);
 
+    // Utilisé pour être navigué instanément.
     const navigateTo = useNavigate();
 
     /**

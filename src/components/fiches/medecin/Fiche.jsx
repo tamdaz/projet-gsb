@@ -7,8 +7,11 @@ import { updateMedecin } from "../../../api/medecins";
  * jour les informations du médecin.
  */
 export default function Fiche({ medecin }) {
-  const [status, setStatus] = React.useState(null);
-  const [message, setMessage] = React.useState(null);
+    // Statut de l'alerte.
+    const [status, setStatus] = React.useState("");
+    
+    // Message de l'alerte.
+    const [message, setMessage] = React.useState("");
 
   /**
    * Permet de mettre à jour les informations du médecin.

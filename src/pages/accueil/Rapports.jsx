@@ -16,15 +16,13 @@ export default function Rapports() {
 	const navigateTo = useNavigate();
 
 	/**
-	 * À chaque fois qu'on clique pour ajouter ou modifier un rapport, le
-	 * tableau de médecins est réinitialisé et le médécin qui a été
-	 * trouvée est localement effacé de l'état.
+	 * À chaque fois qu'on tape la barre de recherche de médecin sur le clavier.
 	 */
 	React.useEffect(() => {
 		getMedecinsParNom(recherche).then((res) => {
 			setMedecins(res.data);
 		});
-	}, [choix]);
+	}, [recherche]);
 
 	/**
 	 * Permet de lister les médecins, utilisé pour l'autocomplétion.

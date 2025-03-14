@@ -8,9 +8,16 @@ import { Outlet, useNavigate } from 'react-router-dom';
  * Page qui représente la consultation d'un médecin en question.
  */
 export default function Medecins() {
+	// Liste de medecins.
 	const [medecins, setMedecins] = React.useState([]);
+
+	// Nom du médecin qui va être tapé dans la barre de recherche.
 	const [recherche, setRecherche] = React.useState("");
+
+	// Info sur le médecin sélectionné.
 	const [medecinTrouvee, setMedecinTrouvee] = React.useState({});
+	
+	// Utilisé pour être redirigé instantanément.
 	const navigateTo = useNavigate();
 
 	/**

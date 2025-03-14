@@ -7,8 +7,13 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
  * Page qui représente la page d'accueil.
  */
 export default function Accueil() {
+	// Stocker les données de l'utilisateur qui s'est connecté.
 	const [dataVisiteur, setDataVisiteur] = React.useState({});
+
+	// Récupérer les états qui ont été envoyées par le précédent composant.
 	const { state } = useLocation();
+
+	// Utilisé pour être redirigé instantanément.
 	const navigateTo = useNavigate();
 
 	/**

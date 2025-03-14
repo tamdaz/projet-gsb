@@ -7,8 +7,14 @@ import Alert from "../../Alert";
  * Représente le formulaire pour l'ajout / modification d'un rapport.
  */
 export default function AjouterRapport() {
-    const [status, setStatus] = React.useState(null);
-    const [message, setMessage] = React.useState(null);
+    // Statut de l'alerte.
+    const [status, setStatus] = React.useState("");
+    
+    // Message de l'alerte.
+    const [message, setMessage] = React.useState("");
+
+    // Récupérer les données de l'utilisateur ainsi que du médecin qui a
+    // été selectionné.
     const [dataVisiteur, medecinTrouvee] = useOutletContext();
 
     /**

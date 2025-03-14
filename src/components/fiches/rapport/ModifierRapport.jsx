@@ -3,25 +3,48 @@ import Alert from "./../../../components/Alert";
 import { useOutletContext } from "react-router-dom";
 import { getRapportsParDate, modifierRapport } from "../../../api/rapports";
 
+/**
+ * Composant qui permet d"effectuer la modification du rapport.
+ */
 export default function ModifierRapport() {
-    const [status, setStatus] = React.useState(null);
-    const [message, setMessage] = React.useState(null);
-    const [dateRapport, setDateRapport] = React.useState(null);
+    // Statut de l'alerte.
+    const [status, setStatus] = React.useState("");
+    
+    // Message de l'alerte.
+    const [message, setMessage] = React.useState("");
+    
+    // Date du rapport qui va être tapé par l'utilisateur.
+    const [dateRapport, setDateRapport] = React.useState("");
+    
+    // Liste de rapports qui font être fetchés dans ce composant.
     const [listeRapports, setListeRapports] = React.useState([]);
+    
+    // Info sur le rapport sélectionné.
     const [selectedRapport, setSelectedRapport] = React.useState({});
+    
+    // Récupérer les données de l'utilisateur (visiteur).
     const [dataVisiteur] = useOutletContext();
 
+    /**
+     * À chaque fois que la date du rapport est tapé, vérifier son format.
+     */
     React.useEffect(() => {
         if (dateRapport !== undefined) {
             const regexDate = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/
 
             if (regexDate.test(dateRapport)) {
                 rechercherRapports();
-                setStatus(null);
-                setMessage(null);
             }
         }
     }, [dateRapport]);
+
+    /**
+     * Permet de cacher le message.
+     */
+    const cacherMessage = () => {
+        setStatus("");
+        setMessage("");
+    }
 
     /**
      * Permet de rechercher des rapports une fois que la date est choisie.
@@ -32,13 +55,9 @@ export default function ModifierRapport() {
             setStatus("error");
             setMessage("Aucun rapport trouvé à cette date.");
 
-            setTimeout(() => {
-                setStatus(null);
-                setMessage(null);
-            }, 5000);
+            setTimeout(cacherMessage, 5000);
         } else {
-            setStatus(null);
-            setMessage(null);
+            cacherMessage();
         }
 
         setListeRapports(rapportsTrouves.data);
