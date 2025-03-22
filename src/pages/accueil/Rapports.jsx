@@ -59,9 +59,9 @@ export default function Rapports() {
 			onSelect={item => {
 				setMedecinTrouvee(item);
 				if (choix === "Ajouter")
-					navigateTo(`/accueil/rapports/${item.id}/ajouter`);
+					navigateTo(`/projet-gsb/accueil/rapports/${item.id}/ajouter`);
 				else if (choix === "Modifier")
-					navigateTo(`/accueil/rapports/${item.id}/modifier`);
+					navigateTo(`/projet-gsb/accueil/rapports/${item.id}/modifier`);
 			}}
 			onChange={e => setRecherche(e.target.value)}
 			items={listeMedecins()}

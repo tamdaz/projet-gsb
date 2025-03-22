@@ -11,31 +11,37 @@ import ModifierRapport from "./components/fiches/rapport/ModifierRapport";
  */
 export const routes = [
 	{
-		path: "/",
-		element: <Index />
-	},
-	{
-		path: "/accueil",
-		element: <Accueil />,
+		path: "/projet-gsb",
 		children: [
 			{
-				path: "medecins",
-				element: <Medecins />,
+				path: "/",
+				element: <Index />
+			},
+			{
+				path: "/accueil",
+				element: <Accueil />,
 				children: [
 					{
-						path: ":id",
-						element: <FicheMedecin />
-					}
-				]
-			}, {
-				path: "rapports",
-				element: <Rapports />,
-				children: [{
-						path: ":id/ajouter",
-						element: <AjouterRapport />
+						path: "medecins",
+						element: <Medecins />,
+						children: [
+							{
+								path: ":id",
+								element: <FicheMedecin />
+							}
+						]
 					}, {
-						path: ":id/modifier",
-						element: <ModifierRapport />
+						path: "rapports",
+						element: <Rapports />,
+						children: [
+							{
+							path: ":id/ajouter",
+							element: <AjouterRapport />
+							}, {
+								path: ":id/modifier",
+								element: <ModifierRapport />
+							}
+						]
 					}
 				]
 			}
