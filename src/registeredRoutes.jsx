@@ -11,11 +11,11 @@ import ModifierRapport from "./components/fiches/rapport/ModifierRapport";
  */
 export const routes = [
 	{
-		path: "/projet-gsb",
+		path: "/projet-gsb/",
 		element: <Index />,
 		children: [
 			{
-				path: "/accueil",
+				path: "accueil",
 				element: <Accueil />,
 				children: [
 					{
