@@ -12,33 +12,30 @@ import ModifierRapport from "./components/fiches/rapport/ModifierRapport";
 export const routes = [
 	{
 		path: "/",
-		element: <Index />,
+		element: <Index />
+	}, {
+		path: "accueil",
+		element: <Accueil />,
 		children: [
 			{
-				path: "accueil",
-				element: <Accueil />,
+				path: "medecins",
+				element: <Medecins />,
 				children: [
 					{
-						path: "medecins",
-						element: <Medecins />,
-						children: [
-							{
-								path: ":id",
-								element: <FicheMedecin />
-							}
-						]
+						path: ":id",
+						element: <FicheMedecin />
+					}
+				]
+			}, {
+				path: "rapports",
+				element: <Rapports />,
+				children: [
+					{
+					path: ":id/ajouter",
+					element: <AjouterRapport />
 					}, {
-						path: "rapports",
-						element: <Rapports />,
-						children: [
-							{
-							path: ":id/ajouter",
-							element: <AjouterRapport />
-							}, {
-								path: ":id/modifier",
-								element: <ModifierRapport />
-							}
-						]
+						path: ":id/modifier",
+						element: <ModifierRapport />
 					}
 				]
 			}

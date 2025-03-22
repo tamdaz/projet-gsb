@@ -22,7 +22,7 @@ export default function Index() {
         if (sessionStorage.getItem("credentials") !== null) {
             const credentials = JSON.parse(sessionStorage.getItem("credentials"));
             
-            navigateTo("/projet-gsb/accueil", {
+            navigateTo("/accueil", {
                 state: credentials
             });
         }
@@ -50,7 +50,7 @@ export default function Index() {
                     mdp: credentials.mdp
                 }
 
-                navigateTo("/projet-gsb/accueil", {
+                navigateTo("/accueil", {
                     state: jsonCredentials
                 })
 
@@ -61,7 +61,7 @@ export default function Index() {
                     sessionStorage.setItem("credentials", JSON.stringify(jsonCredentials));
                 }
     
-                navigateTo("/projet-gsb/accueil", {
+                navigateTo("/accueil", {
                     state: jsonCredentials
                 })
             } else {

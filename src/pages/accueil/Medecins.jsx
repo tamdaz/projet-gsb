@@ -60,12 +60,12 @@ export default function Medecins() {
 			placeholder="Rechercher médecins"
 			onSelect={item => {
 				selectMedecin(item);
-				navigateTo(`/projet-gsb/accueil/medecins/${item.id}`);
+				navigateTo(`/accueil/medecins/${item.id}`);
 			}}
 			onChange={e => {
 				setRecherche(e.target.value)
 				setMedecinTrouvee({})
-				navigateTo(`/projet-gsb/accueil/medecins`)
+				navigateTo(`/accueil/medecins`)
 			}}
 			items={listeMedecins()}
 		/>
