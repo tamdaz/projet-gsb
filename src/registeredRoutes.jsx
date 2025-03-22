@@ -11,7 +11,7 @@ import ModifierRapport from "./components/fiches/rapport/ModifierRapport";
  */
 export const routes = [
 	{
-		path: "/projet-gsb/",
+		path: "/",
 		element: <Index />,
 		children: [
 			{

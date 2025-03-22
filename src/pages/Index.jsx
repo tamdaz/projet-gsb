@@ -72,7 +72,7 @@ export default function Index() {
 
     return <div className="grid grid-cols-2 w-screen h-screen divide-x-2">
         <div className="flex justify-center items-center">
-            <img src="/logo-gsb.png" alt="logo_gsb" width={256} />
+            <img src="/projet-gsb/logo-gsb.png" alt="logo_gsb" width={256} />
         </div>
         <div className="flex flex-col justify-center items-start">
             <div className="max-w-[800px] m-auto">
