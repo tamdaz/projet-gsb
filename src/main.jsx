@@ -1,11 +1,11 @@
 import { StrictMode } from 'react'
 import { routes } from './registeredRoutes';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import './css/index.css'
 
-const router = createBrowserRouter(routes, {
+const router = createHashRouter(routes, {
 	future: {
 		v7_relativeSplatPath: true
 	}
