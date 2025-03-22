@@ -32,9 +32,9 @@ export default function Navbar() {
 
 	return <nav className="w-full bg-blue-500 text-white flex flex-row gap-8 px-8 py-3 items-center">
 		<b>GSB</b>
-		<NavItem url="/accueil" name="Dashboard" />
-		<NavItem url="/accueil/rapports" name="Rapports" />
-		<NavItem url="/accueil/medecins" name="Médecins" />
+		<NavItem url="/projet-gsb/accueil" name="Dashboard" />
+		<NavItem url="/projet-gsb/accueil/rapports" name="Rapports" />
+		<NavItem url="/projet-gsb/accueil/medecins" name="Médecins" />
 		<div className="flex-grow"></div>
 		<button onClick={deconnexion} className="btn-red px-4">
 			Se déconnecter
