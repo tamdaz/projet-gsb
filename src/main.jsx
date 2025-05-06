@@ -15,9 +15,7 @@ const router = createHashRouter(routes, {
  * Point d'entrée de l'application.
  */
 createRoot(document.getElementById('root')).render(
-	<StrictMode>
-		<RouterProvider router={router} future={{
-			v7_startTransition: true
-		}} />
-	</StrictMode>
+	<RouterProvider router={router} future={{
+		v7_startTransition: true
+	}} />
 )
