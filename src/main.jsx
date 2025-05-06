@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { routes } from './registeredRoutes';
 import { createRoot } from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
