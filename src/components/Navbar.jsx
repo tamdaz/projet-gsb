@@ -23,13 +23,12 @@ export default function Navbar() {
 	 * l'URL indiqué dans le navigateur : mettre cet item en gras.
 	 */
 	const NavItem = ({ url, isExactUrl, name }) => {
-		const checkPath = isExactUrl ? location.pathname === url : location.pathname.startsWith(url);
-		
-		if (checkPath) {
-			return <Link to={url} className="font-bold">{ name }</Link>
-		} else {
-			return <Link to={url}>{ name }</Link>
-		}
+		const checkPath = (isExactUrl) ?
+			location.pathname === url :
+			location.pathname.startsWith(url)
+		;
+
+		return <Link to={url} className={checkPath ? "font-bold" : null}>{ name }</Link>
 	}
 
 	return <nav className="w-full bg-blue-500 text-white flex flex-row gap-8 px-8 py-3 items-center">
