@@ -7,13 +7,13 @@ import api from "./api";
  * @param {string} mdp Mot de passe
  */
 export async function getVisiteur(login, mdp) {
-    try {
-        const response = await api.get('/connexion', {
-            params: { login, mdp }
-        })
+  try {
+    const response = await api.get('/connexion', {
+      params: { login, mdp }
+    })
 
-        return response;
-    } catch (err) {
-        console.error("Une erreur s'est produite : ", err);
-    }
+    return response;
+  } catch (err) {
+    console.error("Une erreur s'est produite : ", err);
+  }
 }

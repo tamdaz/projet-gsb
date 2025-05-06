@@ -7,11 +7,11 @@ import { updateMedecin } from "../../../api/medecins";
  * jour les informations du médecin.
  */
 export default function Fiche({ medecin }) {
-    // Statut de l'alerte.
-    const [status, setStatus] = React.useState("");
-    
-    // Message de l'alerte.
-    const [message, setMessage] = React.useState("");
+  // Statut de l'alerte.
+  const [status, setStatus] = React.useState("");
+
+  // Message de l'alerte.
+  const [message, setMessage] = React.useState("");
 
   /**
    * Permet de mettre à jour les informations du médecin.
@@ -40,7 +40,7 @@ export default function Fiche({ medecin }) {
   }
 
   return <>
-    { status !== "" && message !== "" ? <Alert title={message} status={status} /> : null }
+    {status !== "" && message !== "" ? <Alert title={message} status={status} /> : null}
     <form onSubmit={handleSubmit} method="post">
       <div className="grid grid-cols-2 gap-4 mb-4">
         <label>
