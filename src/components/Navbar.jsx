@@ -26,19 +26,35 @@ export default function Navbar() {
 		const checkPath = (isExactUrl) ?
 			location.pathname === url :
 			location.pathname.startsWith(url)
-		;
+			;
 
-		return <Link to={url} className={checkPath ? "font-bold" : null}>{ name }</Link>
+		return <Link to={url} className={checkPath ? "font-bold" : null}>{name}</Link>
 	}
 
-	return <nav className="w-full bg-blue-500 text-white flex flex-row gap-8 px-8 py-3 items-center">
-		<b>GSB</b>
-		<NavItem isExactUrl={true} url="/accueil" name="Dashboard" />
-		<NavItem isExactUrl={false} url="/accueil/rapports" name="Rapports" />
-		<NavItem isExactUrl={false} url="/accueil/medecins" name="Médecins" />
-		<div className="flex-grow"></div>
-		<button onClick={deconnexion} className="btn-red px-4">
-			Se déconnecter
-		</button>
+	/**
+	 * Affiche un ensemble d'items pour le menu
+	 */
+	const NavItems = () => {
+		return <>
+			<NavItem isExactUrl={true} url="/accueil" name="Dashboard" />
+			<NavItem isExactUrl={false} url="/accueil/rapports" name="Rapports" />
+			<NavItem isExactUrl={false} url="/accueil/medecins" name="Médecins" />
+		</>
+	}
+
+	return <nav className="w-full bg-blue-500 text-white px-8 py-3">
+		<div className="flex flex-row items-center">
+			<div className="hidden sm:flex sm:gap-8">
+				<b>GSB</b>
+				<NavItems />
+			</div>
+			<div className="flex-grow"></div>
+			<button onClick={deconnexion} className="btn-red px-3">
+				Se déconnecter
+			</button>
+		</div>
+		<div className="flex flex-col md:hidden mt-4 mb-2 gap-2">
+			<NavItems />
+		</div>
 	</nav>
 }
