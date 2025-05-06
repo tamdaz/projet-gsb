@@ -9,6 +9,8 @@ export default function Navbar() {
 	const navigateTo = useNavigate();
 	const location = useLocation();
 
+	const [showMenu, setShowMenu] = React.useState(false);
+
 	/**
 	 * Permet de se déconnecter du compte d'un visiteur.
 	 */
@@ -44,6 +46,7 @@ export default function Navbar() {
 
 	return <nav className="w-full bg-blue-500 text-white px-8 py-3">
 		<div className="flex flex-row items-center">
+			<button className="px-6 mr-8 sm:hidden" onClick={() => setShowMenu(!showMenu)}>Menu</button>
 			<div className="hidden sm:flex sm:gap-8">
 				<b>GSB</b>
 				<NavItems />
@@ -53,8 +56,10 @@ export default function Navbar() {
 				Se déconnecter
 			</button>
 		</div>
-		<div className="flex flex-col md:hidden mt-4 mb-2 gap-2">
-			<NavItems />
-		</div>
+		{
+			showMenu && <div className="flex flex-col sm:hidden mt-4 mb-2 gap-2">
+				<NavItems />
+			</div>
+		}
 	</nav>
 }
