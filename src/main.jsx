@@ -11,11 +11,15 @@ const router = createHashRouter(routes, {
 	}
 });
 
-/**
- * Point d'entrée de l'application.
- */
-createRoot(document.getElementById('root')).render(
-	<RouterProvider router={router} future={{
-		v7_startTransition: true
-	}} />
-)
+try {
+	/**
+	 * Point d'entrée de l'application.
+	 */
+	createRoot(document.getElementById('root')).render(
+		<RouterProvider router={router} future={{
+			v7_startTransition: true
+		}} />
+	)
+} catch (e) {
+	// ...
+}
