@@ -136,7 +136,7 @@ export default function ModifierRapport() {
         Bilan :
         <textarea name="bilan" defaultValue={selectedRapport.bilan ?? ``} required></textarea>
       </label>
-      <button type="submit" className="w-full">Ajouter un rapport</button>
+      <button type="submit" className="w-full">Mettre à jour</button>
     </form>
   }
 

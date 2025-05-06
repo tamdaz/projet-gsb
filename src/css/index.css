@@ -31,6 +31,10 @@ button.btn-red {
     hover:bg-red-600 active:bg-red-700;
 }
 
+.disabled-button {
+    @apply border-blue-500 text-blue-500 bg-white hover:bg-white cursor-default;
+}
+
 react-datalist-input__listbox {
 	height: 500px;
 }

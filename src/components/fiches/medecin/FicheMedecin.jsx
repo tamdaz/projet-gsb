@@ -13,8 +13,8 @@ export default function FicheMedecin() {
    */
   const NavbarMedecins = () => {
     return <div className="grid grid-cols-2 gap-4 py-4">
-      <button className="w-full" onClick={() => setAffichage("rapport")}>Consulter les rapports</button>
-      <button className="w-full" onClick={() => setAffichage("fiche")}>Gérer le médecin</button>
+      <button className={`w-full ${affichage === "rapport" && "disabled-button"}`} onClick={() => setAffichage("rapport")}>Consulter les rapports</button>
+      <button className={`w-full ${affichage === "fiche" && "disabled-button"}`} onClick={() => setAffichage("fiche")}>Gérer le médecin</button>
     </div>
   }
 

@@ -71,8 +71,8 @@ export default function Rapports() {
 			Object.keys(medecinTrouvee).length !== 0 && <>
 				<h2 className="text-2xl">{choix} un rapport pour {medecinTrouvee.value}</h2>
 				<div className="grid grid-cols-2 gap-4 my-4">
-					<button onClick={goToAjouter} className="w-full">Ajouter un rapport</button>
-					<button onClick={goToModifier} className="w-full">Modifier un rapport</button>
+					<button onClick={goToAjouter} className={`w-full ${choix === "Ajouter" && "disabled-button"}`}>Ajouter un rapport</button>
+					<button onClick={goToModifier} className={`w-full ${choix === "Modifier" && "disabled-button"}`}>Modifier un rapport</button>
 				</div>
 			</>
 		}
