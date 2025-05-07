@@ -41,6 +41,7 @@ export default function Navbar() {
 			<NavItem isExactUrl={true} url="/accueil" name="Dashboard" />
 			<NavItem isExactUrl={false} url="/accueil/rapports" name="Rapports" />
 			<NavItem isExactUrl={false} url="/accueil/medecins" name="Médecins" />
+			<NavItem isExactUrl={false} url="/accueil/visiteur" name="Visiteur" />
 		</>
 	}
 

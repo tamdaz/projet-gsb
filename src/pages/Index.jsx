@@ -22,9 +22,15 @@ export default function Index() {
     if (sessionStorage.getItem("credentials") !== null) {
       const credentials = JSON.parse(sessionStorage.getItem("credentials"));
 
-      navigateTo("/accueil", {
-        state: credentials
-      });
+      console.log(credentials);
+
+      if (Object.keys(credentials).length !== 0) {
+        navigateTo("/accueil", {
+          state: credentials
+        });
+      } else {
+        navigateTo("/");
+      }
     }
   }, []);
 

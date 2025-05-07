@@ -5,6 +5,7 @@ import Rapports from "./pages/accueil/Rapports";
 import FicheMedecin from "./components/fiches/medecin/FicheMedecin";
 import AjouterRapport from "./components/fiches/rapport/AjouterRapport";
 import ModifierRapport from "./components/fiches/rapport/ModifierRapport";
+import Visiteur from "./pages/accueil/Visiteur";
 
 /**
  * Ensemble de chemins accessibles pour les utilisateurs.
@@ -38,6 +39,9 @@ export const routes = [
 						element: <ModifierRapport />
 					}
 				]
+			}, {
+				path: "visiteur",
+				element: <Visiteur />
 			}
 		]
 	}

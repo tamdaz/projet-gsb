@@ -33,11 +33,19 @@ export default function Accueil() {
 		}
 	}, []);
 
+	/**
+	 * À chaque fois que les informations personnelles du visiteur change,
+	 * les enregistrer dans le cache du navigateur (sessionStorage).
+	 */
+	React.useEffect(() => {
+		sessionStorage.setItem("credentials", JSON.stringify(dataVisiteur));
+	}, [dataVisiteur]);
+
 	return <>
 		<Navbar />
 		<div className="p-4 m-auto max-w-[800px]">
 			<h2 className="text-4xl font-bold mb-4">Bonjour, {dataVisiteur.nom} {dataVisiteur.prenom} 👋</h2>
-			<Outlet context={[dataVisiteur]} />
+			<Outlet context={[dataVisiteur, setDataVisiteur]} />
 		</div>
 	</>
 }
